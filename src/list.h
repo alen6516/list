@@ -25,7 +25,7 @@ extern "C" {
 // list_t node struct
 typedef struct list_node{
     struct list_node *next;
-    int *val;
+    void *val;
 } list_node_t;
 
 // list_t struct
@@ -33,8 +33,8 @@ typedef struct {
     list_node_t *head;
     list_node_t *tail;
     unsigned int len;
-    void (*free)(int *val);
-    int (*match)(int *a, int *b);
+    void (*free)(void *val);
+    int (*match)(void *a, void *b);
 } list_t;
 
 // list_t iterator struct
@@ -43,14 +43,14 @@ typedef struct {
 } list_iterator_t;
 
 // Node prototypes
-list_node_t *list_node_new(int *val);
+list_node_t *list_node_new(void *val);
 
 // list_t prototypes
 list_t *list_new();
 
 list_node_t *list_push(list_t *self, list_node_t *node);
 
-list_node_t *list_find(list_t *self, int *val);
+list_node_t *list_find(list_t *self, void *val);
 
 list_node_t *list_at(list_t *self, int index);
 

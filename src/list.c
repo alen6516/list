@@ -70,7 +70,7 @@ list_node_t *list_pop(list_t *self) {
 /*
  * Return the node associated to val or NULL.
  */
-list_node_t *list_find(list_t *self, int *val) {
+list_node_t *list_find(list_t *self, void *val) {
     list_iterator_t *it = list_iterator_new(self);
     list_node_t *node;
 
