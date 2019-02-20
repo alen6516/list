@@ -11,6 +11,7 @@ list_t *list_new() {
         return NULL;
 
     self->head = NULL;
+    self->tail = NULL;
     self->len = 0;
     self->free = NULL;
     self->match = NULL;
@@ -44,10 +45,12 @@ list_node_t *list_push(list_t *self, list_node_t *node) {
     if (!node) return NULL;
 
     if (self->len) {
+        node->next = NULL;
         self->tail->next = node;
         self->tail = node;
     } else {
-        self->head = node;
+        self->head = self->tail = node;
+        node->next = NULL;
     }
 
     ++self->len;

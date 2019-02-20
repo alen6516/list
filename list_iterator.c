@@ -7,7 +7,7 @@
  */
 list_iterator_t *list_iterator_new(list_t *list) {
     list_node_t *node = list->head;
-    return list_iterator_new_from_node()
+    return list_iterator_new_from_node(node);
 }
 
 /*
@@ -28,7 +28,10 @@ list_iterator_t *list_iterator_new_from_node(list_node_t *node) {
  * nodes remain in the list.
  */
 list_node_t *list_iterator_next(list_iterator_t *self) {
-    return self->next;
+    list_node_t *curr = self->next;
+    if (curr) 
+        self->next = curr->next;
+    return curr;
 }
 
 /*

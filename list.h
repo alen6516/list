@@ -3,6 +3,10 @@
 #ifndef LIST_H
 #define LIST_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -19,7 +23,7 @@
 #endif
 
 // list_t node struct
-typedef struct {
+typedef struct list_node{
     struct list_node *next;
     int *val;
 } list_node_t;
@@ -64,5 +68,9 @@ list_iterator_t *list_iterator_new_from_node(list_node_t *node);
 list_node_t *list_iterator_next(list_iterator_t *self);
 
 void list_iterator_destroy(list_iterator_t *self);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif  /* LIST_H */
